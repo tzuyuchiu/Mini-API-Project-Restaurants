@@ -42,7 +42,15 @@ router.get('/:name', (request, response) => {
 
 // POST /restaurants
 router.post('/', (request, response) => {
+  const restaurant = request.body;
   restaurants.push(request.body);
+  if (!restaurant.name || typeof restaurant.name !== 'string') {
+    response.status(400).json({
+      message: 'Restaurant name not provided',
+    });
+    return;
+  }
+
   response.status(201).json({
     message: 'received',
     body: request.body,
