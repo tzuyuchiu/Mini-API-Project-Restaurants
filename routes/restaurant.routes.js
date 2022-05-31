@@ -2,18 +2,18 @@ const router = require('express').Router();
 
 const restaurants = [
   {
-    name: 'Le 37m2',
+    name: 'Le_37m2',
     genre: 'Taiwanese',
     adress: '64 Rue Sainte-Anne, 75002 Paris',
   },
   {
-    name: 'Udon Jubey',
+    name: 'Udon_Jubey',
     genre: 'Japanese',
     adress: ' 39 Rue Sainte-Anne, 75001 Paris',
   },
 
   {
-    name: 'Fondue',
+    name: 'Fondue9',
     genre: 'Chinese',
     adress: ' 93 Rue Baudricourt, 75013 Paris',
   },
@@ -37,7 +37,6 @@ router.get('/:name', (request, response) => {
 
 // POST /restaurants
 router.post('/', (request, response) => {
-  const restaurant = request.body;
   restaurants.push(request.body);
   response.status(201).json({
     message: 'received',
