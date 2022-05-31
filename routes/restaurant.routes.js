@@ -32,6 +32,11 @@ router.get('/', (request, response) => {
 router.get('/:name', (request, response) => {
   const resName = request.params.name;
   const restaurant = restaurants.find((x) => x.name === resName);
+  if (!restaurant) {
+    next();
+
+    return;
+  }
   response.json(restaurant);
 });
 
