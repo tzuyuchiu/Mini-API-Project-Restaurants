@@ -13,7 +13,7 @@ const restaurants = [
   },
 
   {
-    name: 'Fondue 9',
+    name: 'Fondue',
     genre: 'Chinese',
     adress: ' 93 Rue Baudricourt, 75013 Paris',
   },
@@ -21,9 +21,27 @@ const restaurants = [
 
 // GET /
 // return a list of all restaurants
-router.get('/restaurants', (request, response) => {
+router.get('/', (request, response) => {
   response.json({
     restaurants: restaurants,
+  });
+});
+
+// route parameters
+// GET /restaurants/:name
+router.get('/:name', (request, response) => {
+  const resName = request.params.name;
+  const restaurant = restaurants.find((x) => x.name === resName);
+  response.json(restaurant);
+});
+
+// POST /restaurants
+router.post('/', (request, response) => {
+  const restaurant = request.body;
+  restaurants.push(request.body);
+  response.status(201).json({
+    message: 'received',
+    body: request.body,
   });
 });
 
